@@ -1,0 +1,14 @@
+{
+  "name": "seyo-skills",
+  "description": "日本語の文章と作業の手順を扱うスキル集 seyo のマーケットプレイス",
+  "owner": {
+    "name": "surumenDD"
+  },
+  "plugins": [
+    {
+      "name": "seyo",
+      "source": "./",
+      "description": "日本語の文章と作業の手順を扱うスキル集"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": ["-X", "utf8", "-I", "${CLAUDE_PLUGIN_ROOT}/skills/handoff-seyo/scripts/post_compact.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": ["-X", "utf8", "-I", "${CLAUDE_PLUGIN_ROOT}/skills/handoff-seyo/scripts/ctx_notice.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": ["-X", "utf8", "-I", "${CLAUDE_PLUGIN_ROOT}/skills/handoff-seyo/scripts/ctx_notice.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

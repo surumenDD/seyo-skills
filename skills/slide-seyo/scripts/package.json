@@ -1,0 +1,12 @@
+{
+  "name": "slide-check-html",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HTML で組んだスライドの読める条件を実測して検査する",
+  "scripts": {
+    "selftest": "node check_html.mjs --selftest"
+  },
+  "dependencies": {
+    "playwright-core": "^1.65.0"
+  }
+}

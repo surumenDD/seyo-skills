@@ -1,0 +1,5 @@
+# check_pdf.py の依存（Python 3.9 以上）
+# pypdfium2: Apache-2.0 または BSD-3-Clause（同梱の PDFium は BSD-3-Clause ほか）
+pypdfium2>=5.0,<6
+# numpy: BSD-3-Clause
+numpy>=1.24

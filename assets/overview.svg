@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 910 476" width="910" height="476" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">seyo のスキルと図鑑のつながり</title>
+  <desc id="d">slide-seyo と delegate-seyo は、文章を書く場面で、論述の層（ronjutsu-seyo2）と文体の層（buntai-seyo）を読み、次に利用者の PC の ~/.seyo/ にある指摘の図鑑を、共通、引き継ぐプロジェクト、いまのプロジェクトの順に読む。chosei-seyo は会話の指摘を図鑑に登録する。handoff-seyo はほかと独立し、フックで通知する。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555555"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="910" height="476" fill="#FAFAFA"/>
+
+  <!-- 公開する範囲と、公開しない範囲 -->
+  <rect x="8" y="8" width="570" height="460" fill="none" stroke="#555555" stroke-width="2" stroke-dasharray="8 6"/>
+  <rect x="588" y="8" width="314" height="460" fill="none" stroke="#555555" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="24" y="48" font-size="24" fill="#404040">このリポジトリ（公開）</text>
+  <text x="602" y="48" font-size="24" fill="#404040">~/.seyo/（公開しない）</text>
+
+  <!-- 作業のスキル -->
+  <rect x="16" y="72" width="200" height="246" fill="#EAF3F9" stroke="#0072B2" stroke-width="2"/>
+  <text x="116" y="112" font-size="26" font-weight="bold" fill="#1E1E1E" text-anchor="middle">作業のスキル</text>
+  <text x="116" y="174" font-size="26" fill="#1E1E1E" text-anchor="middle">slide-seyo</text>
+  <text x="116" y="218" font-size="26" fill="#1E1E1E" text-anchor="middle">delegate-seyo</text>
+  <text x="116" y="286" font-size="24" fill="#404040" text-anchor="middle">手順と検査</text>
+
+  <!-- 文章の方針 -->
+  <rect x="274" y="72" width="220" height="246" fill="#FCEFE7" stroke="#D55E00" stroke-width="2"/>
+  <text x="384" y="112" font-size="26" font-weight="bold" fill="#1E1E1E" text-anchor="middle">文章の方針</text>
+  <text x="384" y="166" font-size="26" fill="#1E1E1E" text-anchor="middle">ronjutsu-seyo2</text>
+  <text x="384" y="198" font-size="24" fill="#404040" text-anchor="middle">論述の層</text>
+  <text x="384" y="252" font-size="26" fill="#1E1E1E" text-anchor="middle">buntai-seyo</text>
+  <text x="384" y="284" font-size="24" fill="#404040" text-anchor="middle">文体の層</text>
+
+  <!-- 利用者の指摘の図鑑 -->
+  <rect x="602" y="72" width="292" height="246" fill="#E8F5F1" stroke="#009E73" stroke-width="2"/>
+  <text x="748" y="112" font-size="26" font-weight="bold" fill="#1E1E1E" text-anchor="middle">利用者の指摘の図鑑</text>
+  <rect x="618" y="128" width="260" height="44" fill="#FFFFFF" stroke="#009E73" stroke-width="1.5"/>
+  <text x="748" y="158" font-size="24" fill="#1E1E1E" text-anchor="middle">共通</text>
+  <line x1="748" y1="174" x2="748" y2="191" stroke="#555555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="618" y="194" width="260" height="44" fill="#FFFFFF" stroke="#009E73" stroke-width="1.5"/>
+  <text x="748" y="224" font-size="24" fill="#1E1E1E" text-anchor="middle">引き継ぐプロジェクト</text>
+  <line x1="748" y1="240" x2="748" y2="257" stroke="#555555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="618" y="260" width="260" height="44" fill="#FFFFFF" stroke="#009E73" stroke-width="1.5"/>
+  <text x="748" y="290" font-size="24" fill="#1E1E1E" text-anchor="middle">いまのプロジェクト</text>
+
+  <!-- 読む順 -->
+  <line x1="218" y1="195" x2="270" y2="195" stroke="#555555" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="245" y="180" font-size="24" fill="#1E1E1E" text-anchor="middle">①</text>
+  <text x="245" y="228" font-size="24" fill="#1E1E1E" text-anchor="middle">読む</text>
+  <line x1="496" y1="195" x2="598" y2="195" stroke="#555555" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="536" y="180" font-size="24" fill="#1E1E1E" text-anchor="middle">②</text>
+  <text x="536" y="228" font-size="24" fill="#1E1E1E" text-anchor="middle">読む</text>
+
+  <!-- handoff-seyo -->
+  <rect x="16" y="344" width="200" height="112" fill="#EAF3F9" stroke="#0072B2" stroke-width="2"/>
+  <text x="116" y="382" font-size="26" fill="#1E1E1E" text-anchor="middle">handoff-seyo</text>
+  <text x="116" y="414" font-size="24" fill="#404040" text-anchor="middle">ほかと独立</text>
+  <text x="116" y="444" font-size="24" fill="#404040" text-anchor="middle">フックで通知</text>
+
+  <!-- chosei-seyo -->
+  <rect x="274" y="344" width="220" height="112" fill="#FFFFFF" stroke="#555555" stroke-width="2"/>
+  <text x="384" y="382" font-size="26" fill="#1E1E1E" text-anchor="middle">chosei-seyo</text>
+  <text x="384" y="414" font-size="24" fill="#404040" text-anchor="middle">会話の指摘を</text>
+  <text x="384" y="444" font-size="24" fill="#404040" text-anchor="middle">図鑑に登録する</text>
+  <path d="M496,400 L748,400 L748,322" fill="none" stroke="#555555" stroke-width="3" marker-end="url(#arrow)"/>
+</svg>
