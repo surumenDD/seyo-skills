@@ -4,5 +4,6 @@
   "description": "日本語の文章と作業の手順（スライド、委任、引き継ぎ、論述、文体、調整）を扱うスキル集",
   "author": {
     "name": "surumenDD"
-  }
+  },
+  "license": "MIT"
 }

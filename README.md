@@ -94,4 +94,4 @@ macOS や Linux には、`python3` だけがあり `python` が無い環境が�
 
 ## ライセンス
 
-未定です。公開の前に決めます。
+MIT ライセンスです（[LICENSE](LICENSE)）。
