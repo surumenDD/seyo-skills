@@ -20,7 +20,7 @@
 - 話題の最初で主語を名前で言い（the proposed method、we など）、そのあとの同じ話題の中では代名詞を使ってよい。日本語の下書きでは文ごとに主語を書くが、英語で同じ名詞を毎文繰り返すと不自然になる。
 - ツールや設定を主語にした decides、enables、tells は、depends on、with … we can、shows に直せることが多い。過去の発表では、The objective decides … や This enables … の形を、「〜で決まる」「〜を使うと〜できる」に当たる形に直した。
 
-指示語（neither、both、this、that など）の指す先を一つに決められるようにすることは文体の層の第 1 節に、提案する主体を主語で明示することは論述の層（ronjutsu-seyo2）の 3.5 にある。
+指示語（neither、both、this、that など）の指す先を一つに決められるようにすることは文体の層の第 1 節に、提案する主体を主語で明示することは論述の層（ronjutsu-seyo）の 3.5 にある。
 
 ## 4. 見出しと改行
 

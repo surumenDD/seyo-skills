@@ -8,7 +8,7 @@ seyo-skills の 6 つのスキルを入れる方法は 3 つあります。迷�
 | 2. Claude Code のプラグイン | Claude Code | 自動で有効になる | 使えない | 定義のファイルは `claude plugin validate` を通った（アイコンが無いという警告だけ）。プラグインとして導入したときの動きは、公開前なので確かめていない |
 | 3. リポジトリを clone して結ぶ（`tools/link.py`） | スキルのフォルダを読むエージェント | `settings.json` に手で登録する | 使える | 作者の Windows の環境で、このリポジトリの道具を使って動作を確かめた |
 
-どの方法でも、6 つを同じ置き場に入れてください。slide-seyo と delegate-seyo は、同じ親フォルダにある ronjutsu-seyo2 と buntai-seyo を読み、2 つの層は同じ親フォルダの chosei-seyo のスクリプトで図鑑の場所を知ります。2 つの層が無い置き場では、作業のスキルは手順と検査だけで働き、chosei-seyo が無い置き場では、図鑑を読まずに層だけで書きます。
+どの方法でも、6 つを同じ置き場に入れてください。slide-seyo と delegate-seyo は、同じ親フォルダにある ronjutsu-seyo と buntai-seyo を読み、2 つの層は同じ親フォルダの chosei-seyo のスクリプトで図鑑の場所を知ります。2 つの層が無い置き場では、作業のスキルは手順と検査だけで働き、chosei-seyo が無い置き場では、図鑑を読まずに層だけで書きます。
 
 ## 1. スキルを導入する CLI
 
@@ -72,7 +72,7 @@ python tools/link.py
 | 行うことだけを表示する | `python tools/link.py --dry-run` |
 | Claude Code の置き場（`~/.claude/skills`）に結ぶ | `python tools/link.py` |
 | 別の置き場に結ぶ | `python tools/link.py --to ~/.agents/skills` |
-| 一部だけを結ぶ | `python tools/link.py --only slide-seyo ronjutsu-seyo2 buntai-seyo chosei-seyo` |
+| 一部だけを結ぶ | `python tools/link.py --only slide-seyo ronjutsu-seyo buntai-seyo chosei-seyo` |
 | このリポジトリへのリンクだけを外す | `python tools/link.py --unlink` |
 
 リンクなので、リポジトリで `git pull` を実行すれば、結んだ先にも反映されます。
@@ -144,7 +144,7 @@ Claude Code では、`settings.json` の `skillOverrides` で、スキルごと�
     "slide-seyo": "name-only",
     "delegate-seyo": "name-only",
     "handoff-seyo": "name-only",
-    "ronjutsu-seyo2": "name-only",
+    "ronjutsu-seyo": "name-only",
     "buntai-seyo": "name-only",
     "chosei-seyo": "name-only"
   }
@@ -232,7 +232,7 @@ python tools/check.py
 
 | 方法 | 削除のしかた |
 |---|---|
-| 1. CLI | `npx skills remove -g slide-seyo delegate-seyo handoff-seyo ronjutsu-seyo2 buntai-seyo chosei-seyo` で外し、`settings.json` に足した handoff-seyo のフックと `skillOverrides` の行を消す |
+| 1. CLI | `npx skills remove -g slide-seyo delegate-seyo handoff-seyo ronjutsu-seyo buntai-seyo chosei-seyo` で外し、`settings.json` に足した handoff-seyo のフックと `skillOverrides` の行を消す |
 | 2. プラグイン | `/plugin uninstall seyo@seyo-skills` のあと、`/plugin marketplace remove seyo-skills` |
 | 3. clone して結ぶ | `python tools/link.py --unlink` でリンクを外し、`settings.json` に足した handoff-seyo のフックと `skillOverrides` の行を消してから、リポジトリを削除する |
 

@@ -1,6 +1,6 @@
 ---
 name: buntai-seyo
-description: 利用者が buntai-seyo の名前を出して頼んだとき（「/buntai-seyo」「$buntai-seyo」「buntai-seyo で書いて」など）と、slide-seyo、delegate-seyo、chosei-seyo、ronjutsu-seyo2 の手順が文体の層を読むよう指示したときにだけ使う。CLAUDE.md、AGENTS.md、カスタム指示などで buntai-seyo を使うよう求められているときも、名前を出して頼まれたものとして扱う。buntai-seyo は、語の選び方、文の構成、強調、表記の方針（文体の層）を、文書の種類ごとに与える。名前を出さずに文章の作成や推敲を頼まれたときには使わない。
+description: 利用者が buntai-seyo の名前を出して頼んだとき（「/buntai-seyo」「$buntai-seyo」「buntai-seyo で書いて」など）と、slide-seyo、delegate-seyo、chosei-seyo、ronjutsu-seyo の手順が文体の層を読むよう指示したときにだけ使う。CLAUDE.md、AGENTS.md、カスタム指示などで buntai-seyo を使うよう求められているときも、名前を出して頼まれたものとして扱う。buntai-seyo は、語の選び方、文の構成、強調、表記の方針（文体の層）を、文書の種類ごとに与える。名前を出さずに文章の作成や推敲を頼まれたときには使わない。
 ---
 
 # buntai-seyo（文体の層）
@@ -8,7 +8,7 @@ description: 利用者が buntai-seyo の名前を出して頼んだとき（「
 ## 使い方
 
 1. 文章の種類を決める。呼び出したスキルや利用者が種類を指定していれば、それに従う。第 1 節は種類を問わず当て、第 2 節は選んだ種類の項を重ねる。
-2. 論理で読ませる文章（論文、発表、報告、メール、AI 向けの文書など）では、論述の層（ronjutsu-seyo2）を、同じ種類について読む。このスキルと同じ親フォルダの `ronjutsu-seyo2/SKILL.md` にある。
+2. 論理で読ませる文章（論文、発表、報告、メール、AI 向けの文書など）では、論述の層（ronjutsu-seyo）を、同じ種類について読む。このスキルと同じ親フォルダの `ronjutsu-seyo/SKILL.md` にある。
 3. 利用者の指摘の図鑑を読む（次の節）。
 4. 同じ会話で読んだあとは、読み直さない。文脈が圧縮されたあとに文章を書くときは、読み直す。
 

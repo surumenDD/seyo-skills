@@ -1,9 +1,9 @@
 ---
-name: ronjutsu-seyo2
-description: 利用者が ronjutsu-seyo2 の名前を出して頼んだとき（「/ronjutsu-seyo2」「$ronjutsu-seyo2」「ronjutsu-seyo2 で書いて」など）と、slide-seyo、delegate-seyo、chosei-seyo、buntai-seyo の手順が論述の層を読むよう指示したときにだけ使う。CLAUDE.md、AGENTS.md、カスタム指示などで ronjutsu-seyo2 を使うよう求められているときも、名前を出して頼まれたものとして扱う。ronjutsu-seyo2 は、論文、発表、報告、メール、AI 向けの文書のように論理で読ませる文章について、何をどの順で主張するかの方針（論述の層）を与える。名前を出さずに文章の作成や推敲を頼まれたときには使わない。
+name: ronjutsu-seyo
+description: 利用者が ronjutsu-seyo の名前を出して頼んだとき（「/ronjutsu-seyo」「$ronjutsu-seyo」「ronjutsu-seyo で書いて」など）と、slide-seyo、delegate-seyo、chosei-seyo、buntai-seyo の手順が論述の層を読むよう指示したときにだけ使う。CLAUDE.md、AGENTS.md、カスタム指示などで ronjutsu-seyo を使うよう求められているときも、名前を出して頼まれたものとして扱う。ronjutsu-seyo は、論文、発表、報告、メール、AI 向けの文書のように論理で読ませる文章について、何をどの順で主張するかの方針（論述の層）を与える。名前を出さずに文章の作成や推敲を頼まれたときには使わない。
 ---
 
-# ronjutsu-seyo2（論述の層）
+# ronjutsu-seyo（論述の層）
 
 ## 使い方
 
