@@ -29,7 +29,7 @@
 
 Claude Code のプラグインとして入れた場合は、リポジトリの `hooks/hooks.json` で 3 つが自動で有効になり、登録は要りません。
 
-スキルのフォルダを `~/.claude/skills` などに結んだ場合は、`~/.claude/settings.json` の `hooks` に 3 つを登録します。書き方は、リポジトリの `docs/install.md` の「handoff-seyo のフックを登録する」にあります。フックは `python` というコマンドで起動するので、`python3` だけがある環境では、同じ手引きの前提の節を見てください。フォルダを結ぶ方法からプラグインに移るときは、手で登録したフックを外します。両方があると、同じフックが二重に動きます。
+スキルのフォルダを `~/.claude/skills` などに置いた場合（スキルを導入する CLI で入れた場合と、リポジトリを clone して結んだ場合）は、`~/.claude/settings.json` の `hooks` に 3 つを登録します。書き方は、リポジトリの `docs/install.md` の「handoff-seyo のフックを登録する」にあります。フックは `python` というコマンドで起動するので、`python3` だけがある環境では、同じ手引きの前提の節を見てください。この形からプラグインに移るときは、手で登録したフックを外します。両方があると、同じフックが二重に動きます。
 
 使用率をフックに渡すには、ステータス行のスクリプトに、受け取った `context_window.used_percentage` の値を `<一時フォルダ>/claude-ctx/<session_id>.txt` に書く処理を足します。一時フォルダは、フックの Python の `tempfile.gettempdir()` が返すフォルダ（Windows では `%TEMP%`）です。PowerShell のステータス行のスクリプトでは、入力の JSON を読んだ変数（次の例では `$d`）を使って、次の行を足します。
 
@@ -52,7 +52,7 @@ try {
 
 ## アンインストール
 
-1. フックを外す。プラグインで入れた場合は、プラグインを削除すればフックも外れます。フォルダを結んだ場合は、`~/.claude/settings.json` の `hooks` から、`handoff-seyo` を含む 3 つの項目を削除し、`skillOverrides` に `"handoff-seyo"` の行があれば、それも削除します。
+1. フックを外す。プラグインで入れた場合は、プラグインを削除すればフックも外れます。フォルダを置いた場合は、`~/.claude/settings.json` の `hooks` から、`handoff-seyo` を含む 3 つの項目を削除し、`skillOverrides` に `"handoff-seyo"` の行があれば、それも削除します。
 2. ステータス行のスクリプトから、「handoff-seyo」という注釈の付いた行を削除する。
 3. スキルを削除する。方法ごとの手順は、リポジトリの `docs/install.md` の「削除」にあります。
 
