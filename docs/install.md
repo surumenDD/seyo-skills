@@ -181,7 +181,7 @@ handoff-seyo のフックは Claude Code のもので、ほかのエージェン
 
 - slide-seyo の HTML と PDF の検査は、Python、Node、Playwright が動く OS で動くように書かれています（HTML の検査は、macOS と Linux のブラウザの置き場も探します）。作者が動作を確かめたのは Windows です。
 - slide-seyo の .pptx の書き出しは、Windows の PowerPoint だけで動きます。ほかの環境では、使っているツール（PowerPoint、Keynote、Google スライド）で PDF に保存し、その PDF をエージェントに渡します。LaTeX のスライドは、組版した PDF をそのまま渡します。
-- handoff-seyo のステータス行への追記の例は PowerShell で書いてあります。ほかのシェルでも、同じ値を同じ場所に書けば、フックはそれを読みます（書き方は handoff-seyo の README）。追記が無い場合、フックは記録（transcript）の最後の使用量から使用率を概算し、知らせの文に概算だと書きます。
+- handoff-seyo のステータス行への追記の例は PowerShell で書いてあります。ほかのシェルでも、同じ値を同じ場所に書けば、フックはそれを読みます（書き方は handoff-seyo の README）。追記が無い場合は、環境変数 `HANDOFF_CTX_WINDOW` を設定します。どちらも無いと、フックは知らせません。
 
 ### `python` が無く `python3` だけがある環境
 
