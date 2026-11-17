@@ -1,6 +1,6 @@
 ---
 name: buntai-seyo
-description: 利用者が buntai-seyo の名前を出して頼んだとき（「/buntai-seyo」「$buntai-seyo」「buntai-seyo で書いて」など）と、slide-seyo、delegate-seyo、chosei-seyo、ronjutsu-seyo の手順が文体の層を読むよう指示したときにだけ使う。CLAUDE.md、AGENTS.md、カスタム指示などで buntai-seyo を使うよう求められているときも、名前を出して頼まれたものとして扱う。buntai-seyo は、語の選び方、文の構成、強調、表記の方針（文体の層）を、文書の種類ごとに与える。名前を出さずに文章の作成や推敲を頼まれたときには使わない。
+description: 語の選び方、文の構成、強調、表記（文体の層）を、文書の種類ごとに定める。利用者が buntai-seyo の名前を出して頼んだとき（「/buntai-seyo」「$buntai-seyo」「buntai-seyo で書いて」など）と、ほかの seyo スキルの手順が読むよう指示したときだけ使う。CLAUDE.md や AGENTS.md などで使うよう指示されている場合も、名前を出して頼まれたものとして扱う。
 ---
 
 # buntai-seyo（文体の層）
