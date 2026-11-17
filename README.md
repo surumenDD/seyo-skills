@@ -1,4 +1,6 @@
-# <img src="assets/logo.svg" width="480" alt="seyo-skills">
+# seyo-skills
+
+<img src="assets/logo.svg" width="480" alt="seyo-skills">
 
 AI エージェントが書く日本語を、読み手に伝わる文章に整えるスキル集です。スライド、委譲の指示書、継続書、報告など、AI に日本語を書かせる作業で使います。
 
