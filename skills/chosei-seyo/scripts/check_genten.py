@@ -18,7 +18,8 @@
             回のフォルダに案（genten.draft.md）を、いまの図鑑の写し（無ければ読み方だけのひな形）で作る
         python check_genten.py --round <回> [--install]
             案と外した一覧を照合する。--install は、問題が 0 件なら案を genten.md として置き、前の版を回のフォルダに残し、
-            登録した件、外した件、この回の共通に移す候補を表示する。利用者の確認は待たない
+            登録した件、外した件、この回の共通に移す候補を表示する。--install を付けない照合は、問題が 0 件なら
+            登録する件と外す件を案として示す。--install は、利用者が案を了承してから実行する
         python check_genten.py --round <回> --include <id> [<id> ...] --heading <主題>
             外した一覧の候補を名指しで登録する。写しを機械的に主題の見出しの下に置き、照合して設置する
         python check_genten.py --pending          登録を待つ回（控えに足したが図鑑に登録していない回）を並べる
@@ -307,6 +308,22 @@ def pending(pdir):
     return [r for r in C.load_ledger(pdir).get("rounds", []) if r.get("genten") == "未登録"]
 
 
+def print_items(entries, fresh, exc, rnd, proposal):
+    """登録する件（した件）と外す件（した件）を表示する。proposal なら案として示す。"""
+    if fresh:
+        print("登録する件（案）:" if proposal else "登録した件:")
+        for b in fresh:
+            print("- %s / %s: 「%s」（%s）" % (b["kind"], b["heading"], first_line(b["quote"]), b["id"]))
+    if exc:
+        if proposal:
+            print("外す件（案）:")
+        else:
+            print("外した件（名指しで登録するなら: python scripts/check_genten.py --round %s --include <id> --heading <主題>）:" % rnd)
+        for r in exc:
+            e = entries.get(r.get("id")) or {}
+            print("- %s（%s）: 「%s」" % (r.get("id"), r.get("reason"), first_line((e.get("user_words") or [""])[0])))
+
+
 def install(home, key, pdir, rnd, draft, exc, label):
     """照合して置く。問題があれば表示して 1 を返す。"""
     entries = {e["id"]: e for e in C.load_entries(pdir)}
@@ -329,15 +346,7 @@ def install(home, key, pdir, rnd, draft, exc, label):
                excluded=len(exc))
     print("図鑑を置いた: %s（%d 字。前の版: %s）。%s: 足した引用 %d、外した候補 %d" % (
         gp, len(draft), before or "なし", label, len(fresh), len(exc)))
-    if fresh:
-        print("登録した件:")
-        for b in fresh:
-            print("- %s / %s: 「%s」（%s）" % (b["kind"], b["heading"], first_line(b["quote"]), b["id"]))
-    if exc:
-        print("外した件（名指しで登録するなら: python scripts/check_genten.py --round %s --include <id> --heading <主題>）:" % rnd)
-        for r in exc:
-            e = entries.get(r.get("id")) or {}
-            print("- %s（%s）: 「%s」" % (r.get("id"), r.get("reason"), first_line((e.get("user_words") or [""])[0])))
+    print_items(entries, fresh, exc, rnd, proposal=False)
     import common_entries
     cands, n_skip = common_entries.find_candidates(home, key, rnd)
     print("\n".join(common_entries.format_candidates(cands, key, n_skip)))
@@ -423,6 +432,9 @@ def main():
     print("問題 %d 件" % len(bad))
     for x in bad[:60]:
         print("  ", x)
+    if not bad:
+        print_items(entries, fresh, exc, a.round, proposal=True)
+        print("利用者の了承を得てから、--install で設置する。")
     sys.exit(1 if bad else 0)
 
 

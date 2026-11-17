@@ -536,7 +536,11 @@ def register_tests(run, home):
     miss = [e for e in expect if e not in out]
     check("図鑑の照合: 見出しの形、根拠の無い注、控えに無い id、種類の食い違い、外した理由の誤りを見つける（%d 種類）" % len(expect),
           code == 1 and not miss, "見つけなかった: %s\n%s" % (miss, out))
-    try_draft(good, ex_ok)
+    code, out = try_draft(good, ex_ok)
+    check("図鑑の案: 問題が 0 件なら設置せずに、登録する件と外す件を案として示す",
+          code == 0 and "登録する件（案）:" in out and "外す件（案）:" in out
+          and "- 一般の読み手への説明 / 日時と場所の位置: 「いつ何をするのかが最後まで分からない」（r1:c01-01）" in out
+          and "--install で設置する" in out and not (os.path.isfile(gp) and read(gp) == good), out)
     code, out = run("check_genten.py", "--round", "r1", "--install")
     ledger = ledger_of(pdir)
     check("図鑑の設置: 問題が 0 件なら案を図鑑として置き、登録した件（見出しと引用の最初の行）と外した件（理由つき）を示す",

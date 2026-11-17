@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""コンテキストの使用率が閾値を超えたとき、継続書を書くよう 1 回だけ知らせるフック。
+"""コンテキストの使用率が閾値を超えたとき、継続書を検討するよう 1 回だけ知らせるフック。
 
 Claude Code の PostToolUse と UserPromptSubmit に登録して使う。フックの入力には
 使用率が含まれないので、次の順で使用率を得る。
 
 1. statusLine のスクリプトが書いた値（<一時フォルダ>/claude-ctx/<session_id>.txt）。
    statusLine の入力の context_window.used_percentage をそのまま書いたもの。
-2. 1 が無いか古い場合は、transcript の最後の usage から概算する
-   （input_tokens + cache_creation_input_tokens + cache_read_input_tokens）。
-   窓の大きさは分からないので、合計が 20 万を超えていれば 100 万、そうでなければ
-   20 万として割る。概算なので、知らせの文にその旨を書く。
+2. 1 が無いか古く、環境変数 HANDOFF_CTX_WINDOW（窓のトークン数）が設定されていれば、
+   transcript の最後の usage の合計をその値で割る。
+3. どちらも無ければ、何も出さない。transcript には窓の大きさが記録されないので、
+   推測した窓で割ると、誤った使用率を知らせてしまう。
 
 知らせは 1 回の上昇につき 1 回だけ出す。使用率が再び下がったら（圧縮のあとなど）、
 次の上昇でもう一度出す。どんな失敗でも、何も出さずに終了コード 0 で終わる。
@@ -41,7 +41,15 @@ def pct_from_statusline(sid):
         return float(f.read().strip())
 
 
-def pct_from_transcript(path):
+def window_from_env():
+    try:
+        w = int(os.environ.get("HANDOFF_CTX_WINDOW") or 0)
+    except ValueError:
+        return None
+    return w if w > 0 else None
+
+
+def pct_from_transcript(path, window):
     if not path or not os.path.isfile(path):
         return None
     size = os.path.getsize(path)
@@ -62,7 +70,6 @@ def pct_from_transcript(path):
                     ("input_tokens", "cache_creation_input_tokens", "cache_read_input_tokens"))
         if total <= 0:
             continue
-        window = 1_000_000 if total > 200_000 else 200_000
         return 100.0 * total / window
     return None
 
@@ -73,11 +80,14 @@ def main():
     if not sid or data.get("agent_id"):       # サブエージェントの中では知らせない
         return
     threshold = float(os.environ.get("HANDOFF_CTX_THRESHOLD") or THRESHOLD)
-    approx = False
     pct = pct_from_statusline(sid)
+    source = "ステータス行の値"
     if pct is None:
-        pct = pct_from_transcript(data.get("transcript_path"))
-        approx = True
+        window = window_from_env()
+        if window is None:
+            return
+        pct = pct_from_transcript(data.get("transcript_path"), window)
+        source = "記録のトークン数と HANDOFF_CTX_WINDOW からの計算"
     if pct is None:
         return
     marker = os.path.join(state_dir(), sid + ".notified")
@@ -89,11 +99,9 @@ def main():
         return
     with open(marker, "w", encoding="utf-8") as f:
         f.write(f"{pct:.0f}")
-    text = (f"コンテキストの使用率が{'約' if approx else ''} {pct:.0f}% に達した"
-            f"{'（transcript からの概算）' if approx else ''}。"
-            "このセッションでは、使用率が高くなった時点で、handoff-seyo の手順で継続書を書くことにしている。"
-            "進行中の一手を切りのよい所まで終えたら、最新の 1 本で再開できる継続書を書き、"
-            "ユーザーの直近の注意は原文のまま引用する。文脈の圧縮は近い。")
+    text = (f"コンテキストの使用率が {pct:.0f}% に達した（{source}）。"
+            "長い作業の途中なら、handoff-seyo の手順で継続書を書くかを検討する。"
+            "書くかどうかは、プロジェクトの規則と利用者の指示に従う。")
     event = data.get("hook_event_name") or "PostToolUse"
     print(json.dumps({"hookSpecificOutput": {"hookEventName": event, "additionalContext": text}},
                      ensure_ascii=False))

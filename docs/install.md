@@ -1,6 +1,6 @@
 # 導入の手引き
 
-seyo-skills の 6 つのスキルを入れる方法は 3 つあります。迷ったら 1 を使います。Claude Code だけで使い、handoff-seyo のフックの登録を自動にしたい場合は 2、リポジトリを手元で編集しながら使う場合は 3 です。
+seyo-skills の 7 つのスキルを入れる方法は 3 つあります。迷ったら 1 を使います。Claude Code だけで使い、handoff-seyo のフックの登録を自動にしたい場合は 2、リポジトリを手元で編集しながら使う場合は 3 です。
 
 | 方法 | 入れられるエージェント | handoff-seyo のフック | 名前だけを出す設定 | 確かめたこと |
 |---|---|---|---|---|
@@ -8,7 +8,7 @@ seyo-skills の 6 つのスキルを入れる方法は 3 つあります。迷�
 | 2. Claude Code のプラグイン | Claude Code | 自動で有効になる | 使えない | 定義のファイルは `claude plugin validate` を通った（アイコンが無いという警告だけ）。プラグインとして導入したときの動きは、公開前なので確かめていない |
 | 3. リポジトリを clone して結ぶ（`tools/link.py`） | スキルのフォルダを読むエージェント | `settings.json` に手で登録する | 使える | 作者の Windows の環境で、このリポジトリの道具を使って動作を確かめた |
 
-どの方法でも、6 つを同じ置き場に入れてください。slide-seyo と delegate-seyo は、同じ親フォルダにある ronjutsu-seyo と buntai-seyo を読み、2 つの層は同じ親フォルダの chosei-seyo のスクリプトで図鑑の場所を知ります。2 つの層が無い置き場では、作業のスキルは手順と検査だけで働き、chosei-seyo が無い置き場では、図鑑を読まずに層だけで書きます。
+どの方法でも、7 つを同じ置き場に入れてください。slide-seyo と delegate-seyo は、同じ親フォルダにある ronjutsu-seyo と buntai-seyo を読み、2 つの層は同じ親フォルダの chosei-seyo のスクリプトで図鑑の場所を知ります。2 つの層が無い置き場では、作業のスキルは手順と検査だけで働き、chosei-seyo が無い置き場では、図鑑を読まずに層だけで書きます。
 
 ## 1. スキルを導入する CLI
 
@@ -18,11 +18,11 @@ seyo-skills の 6 つのスキルを入れる方法は 3 つあります。迷�
 npx skills add surumenDD/seyo-skills -g
 ```
 
-対話の画面で、入れるスキル（6 つすべて）と、入れるエージェントを選びます。`-g` は利用者の全プロジェクトの置き場（Claude Code では `~/.claude/skills`）に入れる指定で、付けなければ、いまのプロジェクトの置き場（`.claude/skills`）に入ります。
+対話の画面で、入れるスキル（7 つすべて）と、入れるエージェントを選びます。`-g` は利用者の全プロジェクトの置き場（Claude Code では `~/.claude/skills`）に入れる指定で、付けなければ、いまのプロジェクトの置き場（`.claude/skills`）に入ります。
 
 | 目的 | コマンド |
 |---|---|
-| 画面で選ばずに、6 つすべてを Claude Code に入れる | `npx skills add surumenDD/seyo-skills --skill '*' -g -a claude-code -y` |
+| 画面で選ばずに、7 つすべてを Claude Code に入れる | `npx skills add surumenDD/seyo-skills --skill '*' -g -a claude-code -y` |
 | 入れる前に、スキルの一覧だけを見る | `npx skills add surumenDD/seyo-skills --list` |
 | リンクではなく、写して置く | `--copy` を付ける |
 
@@ -54,7 +54,7 @@ Claude Code のセッションで、マーケットプレイスを足してか�
 1. 置き場に入れたスキルを外す。方法 1 では `npx skills remove -g`、方法 3 では `python tools/link.py --unlink` を使います。プラグインのスキルは `seyo:<名前>` という別の名前で入るので、置き場のスキルが残ると、同じスキルが 2 つ読み込まれます。
 2. `settings.json` に手で登録した handoff-seyo のフックを外す。プラグインのフックと手で登録したフックの両方があると、同じフックが二重に動きます。
 
-`skillOverrides` の 6 行は、プラグインのスキルには効かないので、消してかまいません。
+`skillOverrides` の 7 行は、プラグインのスキルには効かないので、消してかまいません。
 
 ## 3. リポジトリを clone して結ぶ
 
@@ -132,11 +132,11 @@ Claude Code の `~/.claude/settings.json` の `hooks` に、次の 3 つを足�
 }
 ```
 
-設定は、新しく開始したセッションから有効になります。閾値（既定 90%）は、環境変数 `HANDOFF_CTX_THRESHOLD` で変えられます。使用率の正確な値をフックに渡すための、ステータス行のスクリプトへの追記は、[handoff-seyo の README](../skills/handoff-seyo/README.md) にあります。
+設定は、新しく開始したセッションから有効になります。閾値（既定 90%）は、環境変数 `HANDOFF_CTX_THRESHOLD` で変えられます。使用率の値をフックに渡すための、ステータス行のスクリプトへの追記は、[handoff-seyo の README](../skills/handoff-seyo/README.md) にあります。ステータス行の値が無い環境では、環境変数 `HANDOFF_CTX_WINDOW` に窓のトークン数を設定します。
 
 ### スキルの一覧に名前だけを出す
 
-Claude Code では、`settings.json` の `skillOverrides` で、スキルごとに、エージェントに見せる範囲を決められます。`"name-only"` にすると、エージェントには名前だけが見え、説明文は見えません。名前を出して頼んだときだけスキルを使わせたい場合に設定します。
+どのスキルも、説明文で「名前を出して頼まれたときだけ使う」と指定してあります。そのため、この設定は必須ではありません。Claude Code では、`settings.json` の `skillOverrides` でスキルごとに見せる範囲を決められます。`"name-only"` にすると説明文が一覧から外れ、一覧の分量が減ります。
 
 ```json
 {
@@ -146,7 +146,8 @@ Claude Code では、`settings.json` の `skillOverrides` で、スキルごと�
     "handoff-seyo": "name-only",
     "ronjutsu-seyo": "name-only",
     "buntai-seyo": "name-only",
-    "chosei-seyo": "name-only"
+    "chosei-seyo": "name-only",
+    "kowake-seyo": "name-only"
   }
 }
 ```
@@ -175,13 +176,13 @@ handoff-seyo のフックは Claude Code のもので、ほかのエージェン
 | slide-seyo の HTML の検査 | Node と、`skills/slide-seyo/scripts` での `npm install`、Chrome か Edge |
 | slide-seyo の .pptx の PDF への書き出し（`export_pdf.ps1`） | Windows と PowerPoint |
 | handoff-seyo のフック | Claude Code と、`python` というコマンドで起動する Python 3 |
-| handoff-seyo の使用率の正確な値 | ステータス行のスクリプトへの追記（[handoff-seyo の README](../skills/handoff-seyo/README.md)） |
+| handoff-seyo の使用率の値 | ステータス行のスクリプトへの追記（[handoff-seyo の README](../skills/handoff-seyo/README.md)）か、環境変数 `HANDOFF_CTX_WINDOW` |
 
 ほかの OS での状況は次のとおりです。
 
 - slide-seyo の HTML と PDF の検査は、Python、Node、Playwright が動く OS で動くように書かれています（HTML の検査は、macOS と Linux のブラウザの置き場も探します）。作者が動作を確かめたのは Windows です。
 - slide-seyo の .pptx の書き出しは、Windows の PowerPoint だけで動きます。ほかの環境では、使っているツール（PowerPoint、Keynote、Google スライド）で PDF に保存し、その PDF をエージェントに渡します。LaTeX のスライドは、組版した PDF をそのまま渡します。
-- handoff-seyo のステータス行への追記の例は PowerShell で書いてあります。ほかのシェルでも、同じ値を同じ場所に書けば、フックはそれを読みます（書き方は handoff-seyo の README）。追記が無い場合、フックは記録（transcript）の最後の使用量から使用率を概算し、知らせの文に概算だと書きます。
+- handoff-seyo のステータス行への追記の例は PowerShell で書いてあります。ほかのシェルでも、同じ値を同じ場所に書けば、フックはそれを読みます（書き方は handoff-seyo の README）。追記が無い場合は、環境変数 `HANDOFF_CTX_WINDOW` を設定します。どちらも無いと、フックは知らせません。
 
 ### `python` が無く `python3` だけがある環境
 
@@ -196,7 +197,7 @@ handoff-seyo のフックは、`python` というコマンドを、シェルを�
 
 ## 動作の確認
 
-Claude Code では、新しいセッションで `/` を入力し、スキルの一覧に 6 つの名前（プラグインでは `seyo:<名前>`）が出るかを見ます。handoff-seyo のフックは、模擬の入力で確かめられます（[handoff-seyo の README](../skills/handoff-seyo/README.md) の「動作の確認」）。
+Claude Code では、新しいセッションで `/` を入力し、スキルの一覧に 7 つの名前（プラグインでは `seyo:<名前>`）が出るかを見ます。handoff-seyo のフックは、模擬の入力で確かめられます（[handoff-seyo の README](../skills/handoff-seyo/README.md) の「動作の確認」）。
 
 リポジトリを clone した場合は、検査を実行できます。
 
@@ -232,7 +233,7 @@ python tools/check.py
 
 | 方法 | 削除のしかた |
 |---|---|
-| 1. CLI | `npx skills remove -g slide-seyo delegate-seyo handoff-seyo ronjutsu-seyo buntai-seyo chosei-seyo` で外し、`settings.json` に足した handoff-seyo のフックと `skillOverrides` の行を消す |
+| 1. CLI | `npx skills remove -g slide-seyo delegate-seyo handoff-seyo kowake-seyo ronjutsu-seyo buntai-seyo chosei-seyo` で外し、`settings.json` に足した handoff-seyo のフックと `skillOverrides` の行を消す |
 | 2. プラグイン | `/plugin uninstall seyo@seyo-skills` のあと、`/plugin marketplace remove seyo-skills` |
 | 3. clone して結ぶ | `python tools/link.py --unlink` でリンクを外し、`settings.json` に足した handoff-seyo のフックと `skillOverrides` の行を消してから、リポジトリを削除する |
 
