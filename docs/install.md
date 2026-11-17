@@ -132,7 +132,7 @@ Claude Code の `~/.claude/settings.json` の `hooks` に、次の 3 つを足�
 }
 ```
 
-設定は、新しく開始したセッションから有効になります。閾値（既定 90%）は、環境変数 `HANDOFF_CTX_THRESHOLD` で変えられます。使用率の正確な値をフックに渡すための、ステータス行のスクリプトへの追記は、[handoff-seyo の README](../skills/handoff-seyo/README.md) にあります。
+設定は、新しく開始したセッションから有効になります。閾値（既定 90%）は、環境変数 `HANDOFF_CTX_THRESHOLD` で変えられます。使用率の値をフックに渡すための、ステータス行のスクリプトへの追記は、[handoff-seyo の README](../skills/handoff-seyo/README.md) にあります。ステータス行の値が無い環境では、環境変数 `HANDOFF_CTX_WINDOW` に窓のトークン数を設定します。
 
 ### スキルの一覧に名前だけを出す
 
@@ -175,7 +175,7 @@ handoff-seyo のフックは Claude Code のもので、ほかのエージェン
 | slide-seyo の HTML の検査 | Node と、`skills/slide-seyo/scripts` での `npm install`、Chrome か Edge |
 | slide-seyo の .pptx の PDF への書き出し（`export_pdf.ps1`） | Windows と PowerPoint |
 | handoff-seyo のフック | Claude Code と、`python` というコマンドで起動する Python 3 |
-| handoff-seyo の使用率の正確な値 | ステータス行のスクリプトへの追記（[handoff-seyo の README](../skills/handoff-seyo/README.md)） |
+| handoff-seyo の使用率の値 | ステータス行のスクリプトへの追記（[handoff-seyo の README](../skills/handoff-seyo/README.md)）か、環境変数 `HANDOFF_CTX_WINDOW` |
 
 ほかの OS での状況は次のとおりです。
 

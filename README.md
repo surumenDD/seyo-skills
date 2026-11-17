@@ -75,7 +75,7 @@ handoff-seyo は、層も図鑑も読まずに働きます。コンテキスト�
 | slide-seyo の HTML の検査 | Node と、`skills/slide-seyo/scripts` での `npm install`、Chrome か Edge |
 | slide-seyo の .pptx の PDF への書き出し（`export_pdf.ps1`） | Windows と PowerPoint。ほかの環境では、使っているツールで PDF に保存して渡します |
 | handoff-seyo のフック | Claude Code と、`python` というコマンドで起動する Python 3 |
-| handoff-seyo の使用率の正確な値 | ステータス行のスクリプトへの追記。作者が確かめたのは Windows の PowerShell だけです。追記が無いと、フックは記録から使用率を概算します |
+| handoff-seyo の使用率の正確な値 | ステータス行のスクリプトへの追記。作者が確かめたのは Windows の PowerShell だけです。追記が無い環境では、環境変数 `HANDOFF_CTX_WINDOW` に窓のトークン数を設定します。どちらも無いと、フックは知らせません |
 
 macOS や Linux には、`python3` だけがあり `python` が無い環境があります。その環境では handoff-seyo のフックが起動せず、知らせが出ません。対処と、ほかの OS での状況は、[導入の手引きの前提](docs/install.md#前提)にあります。この README と手引きのコマンドの `python` も、その環境では `python3` に読み替えてください。
 
