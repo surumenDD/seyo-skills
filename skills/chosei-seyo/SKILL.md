@@ -1,6 +1,6 @@
 ---
 name: chosei-seyo
-description: 利用者が会話（進行中の会話を含む）で AI の文章と進め方に出した指摘を、プロジェクトごとの原文の図鑑（~/.seyo/projects/<キー>/genten.md）に取り込み、取り込みの効果を検証する。利用者が chosei-seyo の名前を出して頼んだとき（「/chosei-seyo」「$chosei-seyo」「chosei-seyo で取り込んで」など）だけ使う。CLAUDE.md や AGENTS.md などで使うよう指示されている場合も、名前を出して頼まれたものとして扱う。
+description: AI の文章や進め方への利用者の指摘を、会話から取り出して原文の図鑑に取り込む。図鑑はプロジェクトごとに ~/.seyo/projects/<キー>/genten.md に置く。取り込みの効果の検証も行う。利用者が chosei-seyo の名前を出して頼んだときだけ使う（例：/chosei-seyo、$chosei-seyo）。CLAUDE.md や AGENTS.md で使うよう指定されていれば、名前を出した依頼と同じに扱う。
 ---
 
 # chosei-seyo

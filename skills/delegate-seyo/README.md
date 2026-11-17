@@ -65,7 +65,7 @@ python scripts/scope_check.py --selftest
 
 ## 起動の設定
 
-名前を出して頼んだときだけ使われるよう、説明文で指定しています。Claude Code では、`settings.json` の `skillOverrides` で `name-only` にすると、説明文も一覧から外れます。プラグインで入れた場合、この設定は効きません。
+説明文で、名前を出して頼まれたときだけ使うよう指定しています。Claude Code では `skillOverrides` を `name-only` にすると、説明文も一覧から外れます。プラグインで入れた場合、この設定は効きません。
 
 ```json
 { "skillOverrides": { "delegate-seyo": "name-only" } }

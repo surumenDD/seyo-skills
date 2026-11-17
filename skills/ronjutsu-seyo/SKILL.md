@@ -1,6 +1,6 @@
 ---
 name: ronjutsu-seyo
-description: 論文、発表、報告、メール、AI 向けの文書のように論理で読ませる文章について、何をどの順で主張するか（論述の層）を定める。利用者が ronjutsu-seyo の名前を出して頼んだとき（「/ronjutsu-seyo」「$ronjutsu-seyo」「ronjutsu-seyo で書いて」など）と、ほかの seyo スキルの手順が読むよう指示したときだけ使う。CLAUDE.md や AGENTS.md などで使うよう指示されている場合も、名前を出して頼まれたものとして扱う。
+description: 論述の層。論文・発表・報告・メール・AI 向けの文書など、論理で読ませる文章で何をどの順で主張するかを定める。利用者が ronjutsu-seyo の名前を出して頼んだときだけ使う（例：/ronjutsu-seyo、$ronjutsu-seyo）。ほかの seyo スキルの手順が読むよう指示したときも使う。CLAUDE.md や AGENTS.md で使うよう指定されていれば、名前を出した依頼と同じに扱う。
 ---
 
 # ronjutsu-seyo（論述の層）

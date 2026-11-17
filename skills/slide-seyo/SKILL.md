@@ -1,6 +1,6 @@
 ---
 name: slide-seyo
-description: 発表のスライドを作成、修正、点検し、可読性を同梱のスクリプトで検査する。利用者が slide-seyo の名前を出して頼んだとき（「/slide-seyo」「$slide-seyo」「slide-seyo でスライドを作って」など）だけ使う。CLAUDE.md や AGENTS.md などで使うよう指示されている場合も、名前を出して頼まれたものとして扱う。
+description: 発表スライドの作成・修正・点検を行い、可読性を同梱のスクリプトで検査する。利用者が slide-seyo の名前を出して頼んだときだけ使う（例：/slide-seyo、$slide-seyo）。CLAUDE.md や AGENTS.md で使うよう指定されていれば、名前を出した依頼と同じに扱う。
 ---
 
 # slide-seyo

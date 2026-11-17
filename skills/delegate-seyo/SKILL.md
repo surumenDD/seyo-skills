@@ -1,6 +1,6 @@
 ---
 name: delegate-seyo
-description: サブエージェントや別のエージェントに作業を任せるときの、指示書の書き方と、返ってきた結果の確かめ方を定める。利用者が delegate-seyo の名前を出して頼んだとき（「/delegate-seyo」「$delegate-seyo」「delegate-seyo で並行して調べて」など）と、ほかの seyo スキルの手順が使うよう指示したときだけ使う。CLAUDE.md や AGENTS.md などで使うよう指示されている場合も、名前を出して頼まれたものとして扱う。
+description: 作業をサブエージェントや別のエージェントに委譲するときの、指示書の書き方と結果の確かめ方を定める。利用者が delegate-seyo の名前を出して頼んだときだけ使う（例：/delegate-seyo、$delegate-seyo）。ほかの seyo スキルの手順が指示したときも使う。CLAUDE.md や AGENTS.md で使うよう指定されていれば、名前を出した依頼と同じに扱う。
 ---
 
 # delegate-seyo
