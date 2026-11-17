@@ -1,6 +1,6 @@
 ---
 name: handoff-seyo
-description: 文脈の圧縮や次のセッションに備えて、長い作業の継続書を書く。再開するときは、それを読み直す。利用者が handoff-seyo の名前を出して頼んだときだけ使う（例：/handoff-seyo、$handoff-seyo）。handoff-seyo のフックの知らせが名前を出したときも使う。CLAUDE.md や AGENTS.md で使うよう指定されていれば、名前を出した依頼と同じに扱う。
+description: 文脈の圧縮や次のセッションに備えて、長い作業の継続書を書く。再開時には継続書を読み直す。利用者が handoff-seyo の名前を出して頼んだときだけ使う（例：/handoff-seyo、$handoff-seyo）。handoff-seyo のフックが知らせたときも使う。CLAUDE.md や AGENTS.md で使うよう指定されていれば、名前を出した依頼と同じに扱う。
 ---
 
 # handoff-seyo
